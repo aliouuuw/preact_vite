@@ -144,9 +144,8 @@ async function runBuild() {
   // Build all the HTML files
   const result = await build({
     entrypoints: [
-      // Add your main React entry point
-      path.resolve("src/index.tsx"),
-      // Keep your existing HTML entrypoints
+      // Use your existing main.tsx as the entry point
+      path.resolve("src/app/main.tsx"),
       ...entrypoints
     ],
     outdir,
@@ -157,7 +156,7 @@ async function runBuild() {
     define: {
       "process.env.NODE_ENV": JSON.stringify("production"),
     },
-    ...cliConfig, // Merge in any CLI-provided options
+    ...cliConfig,
   });
 
   // Print the results
