@@ -4,15 +4,18 @@
  *
  * It is included in `src/index.html`.
  */
+import "../../styles/globals.css";
+
 
 import { createRoot } from "react-dom/client";
 import { StrictMode } from "react";
-import { App } from "./App";
+import { RouterProvider } from "@tanstack/react-router";
+import { router } from "./router";
 
 const elem = document.getElementById("root")!;
 const app = (
   <StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </StrictMode>
 );
 
