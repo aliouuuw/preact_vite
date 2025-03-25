@@ -1,0 +1,22 @@
+@layer base {
+    /* Consistent focus and hover states */
+    *:focus-visible {
+      @apply ring-4 ring-ring/20 outline-1 outline-ring/50 transition-all;
+    }
+  
+    /* Glass-like effect for interactive elements */
+    .glass-hover {
+      @apply bg-white/10 backdrop-blur-sm border border-white/10 
+             hover:bg-white/20 transition-all duration-300;
+    }
+  
+    /* Subtle animations */
+    @keyframes subtle-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+  
+    .animate-subtle-pulse:hover {
+      animation: subtle-pulse 0.5s ease-in-out;
+    }
+  }

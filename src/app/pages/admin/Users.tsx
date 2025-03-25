@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { isAdmin } from '@/lib/auth';
+import { isAdmin } from '@/lib/auth-client';
 import { redirect, useNavigate } from '@tanstack/react-router';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';

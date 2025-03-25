@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Card,
   CardContent,
@@ -6,11 +5,36 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useRequireAuth } from "@/context/auth-context";
-import { useAuth } from "@/context/auth-context";
+import { useRequireAuth } from "@/contexts/auth-context";
+import { useAuth } from "@/contexts/auth-context";
+import { getAllUsers } from "@/actions/mock-server-actions";
+import { SearchUser } from "./_components/SearchUser";
+import { useEffect } from "react";
+import { useState } from "react";
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
 export function AdminDashboard() {
   const { loading, authorized } = useRequireAuth('admin');
   const { user } = useAuth();
+
+  const [users, setUsers] = useState<User[] | null>(null);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const users = await getAllUsers();
+        setUsers(users);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUsers();
+  }, []);
 
   if (loading) {
     return <div className="flex justify-center items-center h-64">Loading...</div>;
@@ -32,7 +56,7 @@ export function AdminDashboard() {
             <CardDescription>Manage your users</CardDescription>
           </CardHeader>
           <CardContent>
-            <p>Total users: 42</p>
+            <p>Total users: {users?.length}</p>
           </CardContent>
         </Card>
 
@@ -55,6 +79,8 @@ export function AdminDashboard() {
             <p>Last updated: Today</p>
           </CardContent>
         </Card>
+
+        <SearchUser />
       </div>
     </div>
   );

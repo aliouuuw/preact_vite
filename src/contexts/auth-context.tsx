@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { getSession, logout, login } from '@/lib/auth';
+import { getSession, logout, login } from '@/lib/auth-client';
 import { router } from '@/app/router';
 
 interface User {

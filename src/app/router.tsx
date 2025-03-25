@@ -8,16 +8,14 @@ import {
 } from '@tanstack/react-router'
 import { createRootRoute, createRoute } from '@tanstack/react-router'
 // import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-import { getSession, logout } from '@/lib/auth'
-import { useState, useEffect } from 'react'
-import Link from '@/components/ui/link'
+
 import { LoginPage } from './pages/Login'
 import { AdminDashboard } from './pages/admin/Dashboard'
 import { AdminUsers } from './pages/admin/Users'
-import { Button } from '@/components/ui/button'
 import { HomePage } from './pages/Home'
 import { AboutPage } from './pages/About'
-import { useAuth } from '@/context/auth-context'
+import { useAuth } from '@/contexts/auth-context'
+import Header from '@/components/Header'
 
 // Create a root route
 const rootRoute = createRootRoute({
@@ -26,30 +24,7 @@ const rootRoute = createRootRoute({
     
     return (
       <div className="min-h-screen bg-background antialiased">
-        <header className="border-b">
-          <div className="container mx-auto py-4 px-4 flex justify-between items-center">
-            <Link to="/" className="text-xl font-bold">Your App</Link>
-            
-            <nav className="flex items-center space-x-6">
-              <Link to="/" className="text-primary hover:text-primary/80">Home</Link>
-              <Link to="/about" className="text-primary hover:text-primary/80">About</Link>
-              
-              {!loading && (
-                user ? (
-                  <div className="flex items-center space-x-4">
-                    {user.role === 'admin' && (
-                      <Link to="/admin" className="text-primary hover:text-primary/80">Admin</Link>
-                    )}
-                    <Button variant="ghost" onClick={logout}>Logout</Button>
-                  </div>
-                ) : (
-                  <Link to="/login" className="text-primary hover:text-primary/80">Login</Link>
-                )
-              )}
-            </nav>
-          </div>
-        </header>
-        
+        <Header loading={loading} user={user} logout={logout} />   
         <main className="container mx-auto py-8 px-4">
           <Outlet />
         </main>

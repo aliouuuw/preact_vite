@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { redirect, useNavigate, useSearch } from "@tanstack/react-router";
-import { useAuth } from "@/context/auth-context";
+import { useAuth } from "@/contexts/auth-context";
 import { Button } from "@/components/ui/button";
 import {
   Card,
